@@ -28,7 +28,7 @@
       "path": "src/index.ts",
       "origin": "adapted",
       "packageName": "@tanstack/react-query-devtools",
-      "sha256": "832a207f3537b8b3d12a67eeb8dd21437d042536f2ef9713b07269b8e8725cbb"
+      "sha256": "2db88aee000a3c1ed95167d184659b95ad84a96f9f279b25f277de294af16e69"
     },
     {
       "path": "src/production.ts",

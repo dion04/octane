@@ -90,6 +90,19 @@ for (const [kind, lane] of Object.entries(lanesFor)) {
 	});
 }
 
+// The pristine lane executes one wrapper test that runs the whole upstream suite
+// through the shared config-driven runner and compares identities to pristine-runtime.json.
+const wrapperFile = `${base}/tests/upstream-original.test.ts`;
+const wrapperName = 'runs all pinned Query devtools runtime registrations unchanged';
+await write(`${base}/audit/pristine-wrapper-runtime.json`, {
+	schemaVersion: 1,
+	project: 'tanstack-query-devtools-pristine',
+	roots: [`${base}/tests`],
+	files: [wrapperFile],
+	tests: [{ id: identity(wrapperFile, wrapperName), file: wrapperFile, fullName: wrapperName }],
+	snapshots: 0,
+});
+
 // ordinary (repo-authored) evidence ---------------------------------------
 function casesOf(path) {
 	const stack = [];
@@ -156,9 +169,13 @@ const lanes = ['pristine', 'adapted'].map((kind) => ({
 		kind === 'pristine'
 			? `Runs all ${inventories.pristine.length} pinned runtime registrations unchanged against React.`
 			: `Runs all ${inventories.adapted.length} pinned runtime registrations against Octane with import rewrites only.`,
-	execution: { kind: 'vitest-full', inventory: `${base}/audit/${kind}-runtime.json` },
+	execution: {
+		kind: 'vitest-full',
+		inventory: `${base}/audit/${kind === 'pristine' ? 'pristine-wrapper' : 'adapted'}-runtime.json`,
+	},
 	files: [
-		`${base}/audit/${kind}-runtime.json`,
+		`${base}/audit/${kind === 'pristine' ? 'pristine-wrapper' : 'adapted'}-runtime.json`,
+		...(kind === 'pristine' ? [`${base}/audit/pristine-runtime.json`] : []),
 		...commonSupport,
 		...(kind === 'pristine'
 			? [
@@ -166,6 +183,7 @@ const lanes = ['pristine', 'adapted'].map((kind) => ({
 					`${base}/tests/upstream-vitest.config.ts`,
 					`${base}/tests/upstream-original.test.ts`,
 					'scripts/react-parity/tanstack-query-devtools-pristine-runtime.mjs',
+					'scripts/react-parity/pristine-suite-lib.mjs',
 				]
 			: [`${base}/tests/vitest.adapted.config.ts`, `${base}/tests/adapted-setup.ts`]),
 	].map(support),

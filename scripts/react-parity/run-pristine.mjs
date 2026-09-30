@@ -27,13 +27,6 @@ export const runners = new Map([
 		{ module: './tanstack-virtual-pristine-runtime.mjs', label: 'TanStack Virtual' },
 	],
 	['tanstack-query', { module: './tanstack-query-pristine-runtime.mjs', label: 'TanStack Query' }],
-	[
-		'tanstack-query-devtools',
-		{
-			module: './tanstack-query-devtools-pristine-runtime.mjs',
-			label: 'TanStack Query Devtools',
-		},
-	],
 	['tanstack-store', { module: './tanstack-store-pristine-runtime.mjs', label: 'TanStack Store' }],
 	['zag', { module: './zag-pristine-runtime.mjs', label: 'Zag' }],
 ]);
