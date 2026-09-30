@@ -50,9 +50,14 @@
       "notes": "Runs all 37 pinned runtime registrations unchanged against React.",
       "execution": {
         "kind": "vitest-full",
-        "inventory": "packages/tanstack-query-devtools/audit/pristine-runtime.json"
+        "inventory": "packages/tanstack-query-devtools/audit/pristine-wrapper-runtime.json"
       },
       "files": [
+        {
+          "path": "packages/tanstack-query-devtools/audit/pristine-wrapper-runtime.json",
+          "role": "support",
+          "sha256": "5a179ea9be8d625d29a2d5d4b4f7a2c1161eb6cce4e6661263b36e91ee98907e"
+        },
         {
           "path": "packages/tanstack-query-devtools/audit/pristine-runtime.json",
           "role": "support",
@@ -61,7 +66,7 @@
         {
           "path": "packages/tanstack-query-devtools/audit/upstream.lock.json",
           "role": "support",
-          "sha256": "386e93d1e86ae7b383e2cdc587208055b0a8ddcfb5942205f59a0cba2e6018d0"
+          "sha256": "46fbb523bd8bb05e5cac1689e1a2fe5cdc3183f5c8337f3087d0891fd67050eb"
         },
         {
           "path": "packages/tanstack-query-devtools/audit/provenance.json",
@@ -81,7 +86,7 @@
         {
           "path": "packages/tanstack-query-devtools/scripts/update-audit.mjs",
           "role": "support",
-          "sha256": "1b3fa6faf05e5d98628489be041bbedbed8cd629bdbe36afed575a7e6a738d21"
+          "sha256": "52561ccc9cc0f6f1105d0cac6289b4db7762ddd2c6e7b7218b4ce5b992a770d3"
         },
         {
           "path": "packages/tanstack-query-devtools/audit/pristine-suite.json",
@@ -102,6 +107,11 @@
           "path": "scripts/react-parity/tanstack-query-devtools-pristine-runtime.mjs",
           "role": "support",
           "sha256": "ac75389efb8df5c2614a50bc57e74cf5d921de2a6c7c55a25928354993317df7"
+        },
+        {
+          "path": "scripts/react-parity/pristine-suite-lib.mjs",
+          "role": "support",
+          "sha256": "d34ffc2dca00e6eef7dcaf5bc002024cc511f32dd20c681547555af520438bbb"
         }
       ]
     },
@@ -126,7 +136,7 @@
         {
           "path": "packages/tanstack-query-devtools/audit/upstream.lock.json",
           "role": "support",
-          "sha256": "386e93d1e86ae7b383e2cdc587208055b0a8ddcfb5942205f59a0cba2e6018d0"
+          "sha256": "46fbb523bd8bb05e5cac1689e1a2fe5cdc3183f5c8337f3087d0891fd67050eb"
         },
         {
           "path": "packages/tanstack-query-devtools/audit/provenance.json",
@@ -146,7 +156,7 @@
         {
           "path": "packages/tanstack-query-devtools/scripts/update-audit.mjs",
           "role": "support",
-          "sha256": "1b3fa6faf05e5d98628489be041bbedbed8cd629bdbe36afed575a7e6a738d21"
+          "sha256": "52561ccc9cc0f6f1105d0cac6289b4db7762ddd2c6e7b7218b4ce5b992a770d3"
         },
         {
           "path": "packages/tanstack-query-devtools/tests/vitest.adapted.config.ts",
