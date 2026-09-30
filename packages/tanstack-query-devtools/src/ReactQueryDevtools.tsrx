@@ -76,6 +76,7 @@ export function ReactQueryDevtools(props: DevtoolsOptions): OctaneNode {
 		hideDisabledQueries,
 		theme,
 	} = props;
+	// OCTANE DIVERGENCE[lazy-core-construction][conformance:tanstack-query-devtools-constructs-the-core-once-across-re-renders-and-updates-it-in-place]: the core is built in a lazy initializer so re-renders reuse it.
 	const [devtools] = useState(
 		() => new TanstackQueryDevtools({
 			client: queryClient,

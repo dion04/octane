@@ -45,6 +45,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 		client = new QueryClient();
 	});
 
+	// @parity-case conformance:tanstack-query-devtools-renders-the-parent-container-the-core-mounts-into
 	it('renders the parent container the core mounts into', () => {
 		const { container } = render(createElement(ReactQueryDevtools, { client }));
 		const parent = container.querySelector('.tsqd-parent-container');
@@ -55,6 +56,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 		expect(instances[0]!.mount).toHaveBeenCalledWith(parent);
 	});
 
+	// @parity-case conformance:tanstack-query-devtools-constructs-the-core-once-across-re-renders-and-updates-it-in-place
 	it('constructs the core once across re-renders and updates it in place', () => {
 		const { rerender } = render(createElement(ReactQueryDevtools, { client, theme: 'light' }));
 		rerender(createElement(ReactQueryDevtools, { client, theme: 'dark' }));
@@ -66,6 +68,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 		expect(instances[0]!.unmount).not.toHaveBeenCalled();
 	});
 
+	// @parity-case conformance:tanstack-query-devtools-passes-the-react-query-flavor-and-version-to-the-core
 	it('passes the React Query flavor and version to the core', () => {
 		render(createElement(ReactQueryDevtools, { client }));
 
@@ -76,6 +79,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 		});
 	});
 
+	// @parity-case conformance:tanstack-query-devtools-resolves-the-client-from-queryclientprovider-context
 	it('resolves the client from QueryClientProvider context', () => {
 		render(
 			createElement(QueryClientProvider, {
@@ -87,6 +91,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 		expect(instances[0]!.setClient).toHaveBeenCalledWith(client);
 	});
 
+	// @parity-case conformance:tanstack-query-devtools-unmounts-the-core-when-the-component-unmounts
 	it('unmounts the core when the component unmounts', () => {
 		const { unmount } = render(createElement(ReactQueryDevtools, { client }));
 		unmount();
@@ -95,6 +100,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 	});
 
 	describe('ReactQueryDevtoolsPanel', () => {
+		// @parity-case conformance:tanstack-query-devtools-defaults-to-a-500px-tall-container-and-merges-the-style-prop-over-it
 		it('defaults to a 500px tall container and merges the style prop over it', () => {
 			const first = render(createElement(ReactQueryDevtoolsPanel, { client }));
 			expect(
@@ -110,6 +116,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 			expect(parent.style.width).toBe('50%');
 		});
 
+		// @parity-case conformance:tanstack-query-devtools-opens-the-panel-initially-and-mounts-into-its-container
 		it('opens the panel initially and mounts into its container', () => {
 			const { container } = render(createElement(ReactQueryDevtoolsPanel, { client }));
 
@@ -123,6 +130,7 @@ describe('@octanejs/tanstack-query-devtools', () => {
 			);
 		});
 
+		// @parity-case conformance:tanstack-query-devtools-keeps-the-core-in-sync-with-a-changed-onclose-callback
 		it('keeps the core in sync with a changed onClose callback', () => {
 			const first = vi.fn();
 			const second = vi.fn();
