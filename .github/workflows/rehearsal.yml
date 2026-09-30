@@ -72,3 +72,21 @@ jobs:
       - name: rules check
         if: always()
         run: pnpm rules:check
+      - name: virtual tsx declarations
+        if: always()
+        run: pnpm virtual-tsx:check
+      - name: parity gaps
+        if: always()
+        run: pnpm parity:gaps:check
+      - name: scaffold manifest
+        if: always()
+        run: pnpm scaffold:manifest:check
+      - name: full typecheck
+        if: always()
+        run: pnpm typecheck
+      - name: sync drift
+        if: always()
+        run: |
+          pnpm sync
+          git status --short
+          git diff --exit-code
