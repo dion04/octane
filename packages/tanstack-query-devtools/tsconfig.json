@@ -9,7 +9,7 @@
     "noEmitOnError": true,
     "noErrorTruncation": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node"],
+    "types": [],
     "strict": true,
     "jsx": "react-jsx",
     "jsxImportSource": "octane",
