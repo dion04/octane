@@ -1,0 +1,74 @@
+name: Rehearsal
+
+# Fork-only: runs the repo gates relevant to the new package on free runners.
+on:
+  push:
+    branches: [ci-rehearsal]
+  workflow_dispatch:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+      - run: pnpm install --prod false --frozen-lockfile
+      - name: tests (new package projects)
+        if: always()
+        run: pnpm exec vitest run --project tanstack-query-devtools --project tanstack-query-devtools-ssr --project tanstack-query-devtools-adapted --project tanstack-query-devtools-pristine
+      - name: react-parity validate
+        if: always()
+        run: node scripts/react-parity/check.mjs --validate-only
+      - name: react-parity required lanes (new package)
+        if: always()
+        run: node scripts/react-parity/harness.mjs run-required --manifest packages/tanstack-query-devtools/audit/react-parity.json
+      - name: materialized upstream check
+        if: always()
+        run: pnpm react-port:materialize run --check --package-dir packages/tanstack-query-devtools
+      - name: package inventory
+        if: always()
+        run: pnpm packages:inventory:check
+      - name: bindings status
+        if: always()
+        run: pnpm bindings:status:check
+      - name: binding parity gaps
+        if: always()
+        run: pnpm binding-parity:gaps:check
+      - name: cli data
+        if: always()
+        run: pnpm cli:data:check
+      - name: website ecosystem data
+        if: always()
+        run: pnpm website:ecosystem-data:check
+      - name: consumer tsconfigs
+        if: always()
+        run: pnpm consumer:tsconfigs:check
+      - name: package packs and source publication
+        if: always()
+        run: pnpm packages:pack:check
+      - name: tsrx decls
+        if: always()
+        run: pnpm tsrx-decls:check
+      - name: test markers
+        if: always()
+        run: pnpm test:markers:check
+      - name: typecheck coverage
+        if: always()
+        run: pnpm typecheck:coverage
+      - name: typecheck new package
+        if: always()
+        run: pnpm exec tsrx-tsc --noEmit -p packages/tanstack-query-devtools/tsconfig.json
+      - name: format check
+        if: always()
+        run: pnpm format:check
+      - name: changeset check
+        if: always()
+        run: pnpm changeset:check
+      - name: rules check
+        if: always()
+        run: pnpm rules:check
