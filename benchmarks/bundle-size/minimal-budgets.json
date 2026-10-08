@@ -31,7 +31,7 @@
   },
   "root-static": {
     "raw": 165531,
-    "gzip": 52276,
+    "gzip": 52275,
     "brotli": 45579
   },
   "root-static-local": {
@@ -66,12 +66,12 @@
   },
   "deferred-hydration": {
     "raw": 221351,
-    "gzip": 69687,
+    "gzip": 69686,
     "brotli": 60183
   },
   "hydrate-frame": {
     "raw": 364506,
-    "gzip": 112953,
+    "gzip": 112952,
     "brotli": 96616
   },
   "suspense-transition": {
@@ -142,7 +142,7 @@
   "binding-radix-esbuild": {
     "raw": 215676,
     "gzip": 69893,
-    "brotli": 60828
+    "brotli": 60813
   },
   "binding-floating-ui-vite": {
     "raw": 10726,
