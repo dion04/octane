@@ -181,7 +181,7 @@
   },
   "binding-usehooks-ts-esbuild": {
     "raw": 91593,
-    "gzip": 30751,
+    "gzip": 30750,
     "brotli": 27475
   }
 }
