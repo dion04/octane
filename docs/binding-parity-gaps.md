@@ -128,11 +128,11 @@ surface and evidence.
 
 ## @octanejs/floating-ui
 
-### packages\floating-ui\tests\upstream\react-dom\index.test.tsx
+### packages/floating-ui/tests/upstream/react-dom/index.test.tsx
 
 - **calls the cleanup function**
 
-### packages\floating-ui\tests\upstream\react\unit\FloatingFocusManager.test.tsx
+### packages/floating-ui/tests/upstream/react/unit/FloatingFocusManager.test.tsx
 
 - **return to the first focusable descendent of the reference, if the reference is not focusable**
 - **tabs from the popover to the next element in the iframe**
@@ -147,15 +147,15 @@ surface and evidence.
 - **returns focus when tabbing out then back to close button**
 - **aria-hidden is not applied on root combobox with virtual nested menu**
 
-### packages\floating-ui\tests\upstream\react\unit\NextFloatingDelayGroup.test.tsx
+### packages/floating-ui/tests/upstream/react/unit/NextFloatingDelayGroup.test.tsx
 
 - **does not re-render unrelated consumers**
 
-### packages\floating-ui\tests\upstream\react\unit\useClientPoint.test.tsx
+### packages/floating-ui/tests/upstream/react/unit/useClientPoint.test.tsx
 
 - **cleans up window listener when closing or disabling**
 
-### packages\floating-ui\tests\upstream\react\unit\useListNavigation.test.tsx
+### packages/floating-ui/tests/upstream/react/unit/useListNavigation.test.tsx
 
 - **resets indexRef to -1 upon close**
 - **grid navigation with changing list items**
@@ -166,7 +166,7 @@ surface and evidence.
 - **virtual nested Home or End key press**
 - **domReference trigger in nested virtual menu is set as virtual item**
 
-### packages\floating-ui\tests\upstream\react\unit\useTypeahead.test.tsx
+### packages/floating-ui/tests/upstream/react/unit/useTypeahead.test.tsx
 
 - **Menu - skips disabled items and opens submenu on space if no match**
 - **Menu - resets once a match is no longer found**
