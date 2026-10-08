@@ -6637,7 +6637,7 @@ function vtWaitForResources(
 				img.complete ||
 				img.loading === 'lazy' ||
 				img.onload !== null ||
-				(img as HTMLImageElement & { $$load?: unknown }).$$load != null
+				(img as HTMLImageElement & { $oload?: unknown }).$oload != null
 			)
 				continue;
 			const rect = img.getBoundingClientRect();
@@ -35126,7 +35126,7 @@ function noteDeoptRef(block: Block): void {
 }
 
 // Apply ONE host prop, reusing the same helpers the compiler emits (className/style/
-// setAttribute + `$$type` delegated-event slots + deferred ref attach).
+// setAttribute + `$o<type>` delegated-event slots + deferred ref attach).
 function applyDeoptProp(el: Element, name: string, v: any, ownerBlock: Block): void {
 	const actionName = formActionAttributeName(el, name);
 	if (actionName !== null) {
