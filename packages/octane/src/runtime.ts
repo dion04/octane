@@ -27449,7 +27449,8 @@ function isEventKey(k: string): boolean {
 // Octane alone: Solid's delegation reads and calls `node.$$<type>` from a document
 // listener, so sharing `$$` ran each library's handlers twice inside an Octane
 // root (#1882). The compiler emits the same keys (compile.js, event attributes).
-const EVENT_SLOT_PREFIX = '$o';
+// Bubble keys inline the `'$o'` literal: a named constant for it measured larger
+// in every production bundle.
 const CAPTURE_PREFIX = '$ocapture:';
 
 // Parse an `on<Name>` / `on<Name>Capture` handler prop into its delegated event
@@ -27498,7 +27499,7 @@ function eventSlot(name: string, el?: Element): ParsedEventSlot | null {
 		rest = rest.slice(0, rest.length - 7);
 	}
 	const type = jsxEventName(rest);
-	const slot = { type, key: capture ? CAPTURE_PREFIX + type : EVENT_SLOT_PREFIX + type, capture };
+	const slot = { type, key: capture ? CAPTURE_PREFIX + type : '$o' + type, capture };
 	if (isDelegatedEventProp(name)) (PARSED_EVENT_SLOTS ??= new Map()).set(name, slot);
 	return slot;
 }
@@ -29431,7 +29432,7 @@ export function delegateEvents(eventNames: string[]): void {
 		// Pre-seed the handler-slot key: the dispatch walk polls `$o<type>` on
 		// EVERY logical ancestor of every delegated event, and most of them carry
 		// no handler (see initDomOperations, trick 2).
-		if (canSeed) seedExpando(Element.prototype, EVENT_SLOT_PREFIX + name);
+		if (canSeed) seedExpando(Element.prototype, '$o' + name);
 		// A new event type was registered after some roots/portals already mounted —
 		// back-attach the listener to every active target so handlers stamped on
 		// their DOM via `el.$oclick = …` still receive events.
@@ -29641,7 +29642,7 @@ let _dispatchDepth = 0;
 function createDelegatedEventType(name: string): DelegatedEventType {
 	return {
 		name,
-		bubbleKey: EVENT_SLOT_PREFIX + name,
+		bubbleKey: '$o' + name,
 		captureKey: CAPTURE_PREFIX + name,
 		flags:
 			(delegatedCapture(name) ? EVENT_NATIVE_CAPTURE : 0) |

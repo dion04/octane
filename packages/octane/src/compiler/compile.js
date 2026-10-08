@@ -31700,7 +31700,7 @@ function emitElementHtml(
 						: rest === 'Blur'
 							? 'focusout'
 							: rest.toLowerCase();
-			// The `$o` namespace is Octane's alone; runtime.ts EVENT_SLOT_PREFIX explains why (#1882).
+			// The `$o` namespace is Octane's alone; runtime.ts CAPTURE_PREFIX explains why (#1882).
 			const slotKey = capture ? `$ocapture:${eventName}` : `$o${eventName}`;
 			// `onClick` → the `'$oclick'` slot key. Without this the attribute name
 			// is unreachable from the output: the key's map position resolves to
