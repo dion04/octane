@@ -167,7 +167,7 @@
   "binding-apollo-client-vite": {
     "raw": 340784,
     "gzip": 104707,
-    "brotli": 91597
+    "brotli": 91544
   },
   "binding-apollo-client-esbuild": {
     "raw": 363991,
