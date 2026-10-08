@@ -161,7 +161,7 @@
   },
   "binding-mantine-hooks-esbuild": {
     "raw": 90827,
-    "gzip": 30510,
+    "gzip": 30509,
     "brotli": 27258
   },
   "binding-apollo-client-vite": {
